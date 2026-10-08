@@ -1,0 +1,14 @@
+<Project>
+  <!-- Source mode: LibraryReference becomes a ProjectReference to the sibling repo -->
+  <ItemGroup Condition="'$(LibraryReferenceMode)' == 'Source'">
+    <ProjectReference Include="@(LibraryReference->'$(WorkspaceRepositoriesRoot)%(Repository)/src/%(Identity)/%(Identity).csproj')" />
+  </ItemGroup>
+  <!-- Packages mode: the same LibraryReference becomes a PackageReference from the feed -->
+  <ItemGroup Condition="'$(LibraryReferenceMode)' == 'Packages'">
+    <PackageReference Include="@(LibraryReference)" Version="$(LibVersion)" />
+  </ItemGroup>
+  <!-- Lab only: bake the mode into the exe so Program.cs can print it -->
+  <ItemGroup>
+    <AssemblyMetadata Include="LibraryReferenceMode" Value="$(LibraryReferenceMode)" />
+  </ItemGroup>
+</Project>

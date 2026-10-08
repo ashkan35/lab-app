@@ -1,0 +1,9 @@
+<Project>
+  <PropertyGroup>
+    <!-- Where the other repositories live: the folder above this repo -->
+    <WorkspaceRepositoriesRoot>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..'))/</WorkspaceRepositoriesRoot>
+    <!-- Default mode is Source; override with -p:LibraryReferenceMode=Packages -->
+    <LibraryReferenceMode Condition="'$(LibraryReferenceMode)' == ''">Source</LibraryReferenceMode>
+    <LibVersion Condition="'$(LibVersion)' == ''">1.0.0</LibVersion>
+  </PropertyGroup>
+</Project>
